@@ -11,7 +11,19 @@
   <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.2"></script>
 
 <style>
-             
+        leofam {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        
         .loading-container {
             text-align: center;
             position: relative;
@@ -91,7 +103,7 @@
     </style>
   </head>
 <body class="bg-gradient-enlightened">
-    
+<div class="leofam">    
 <div class="stars" id="stars"></div>
     
     <div class="loading-container">
@@ -100,7 +112,7 @@
         <div class="loading-spinner"></div>
         <div class="loading-text">Connecting you to the stars...</div>
     </div>
-
+</div>
 
 
     <!-- Navigation Header -->
@@ -894,4 +906,3 @@
 <script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
 </body>
 </html>
-
