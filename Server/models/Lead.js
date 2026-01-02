@@ -1,13 +1,4 @@
-﻿import mongoose from "mongoose";
-
-const leadSchema = new mongoose.Schema({
-  name: String,
-  gender: String,
-  dob: String,
-  tob: String,
-  place: String,
-  whatsapp: String
-}, { timestamps: true });
+import mongoose from "mongoose";
 
 const leadSchema = new mongoose.Schema({
   name: String,
@@ -21,5 +12,3 @@ const leadSchema = new mongoose.Schema({
 
 // ✅ SAFE EXPORT (prevents overwrite error)
 export default mongoose.models.Lead || mongoose.model("Lead", leadSchema);
-
-
