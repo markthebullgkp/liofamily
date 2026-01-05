@@ -252,107 +252,516 @@
 
                 <!-- Daily Horoscope Widget -->
                 <div class="animate-slide-up">
-                    <div class="card-elevated relative overflow-hidden">
-                        <!-- Decorative Corner -->
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-sacred opacity-10 rounded-bl-full"></div>
-                        
-                        <div class="relative z-10">
-                            <div class="flex items-center justify-between mb-6">
-                                <h3 class="text-2xl font-headline text-primary">Today's Horoscope</h3>
-                                <span class="text-sm text-text-secondary">December 30, 2025</span>
-                            </div>
+                <div class="card-elevated relative overflow-hidden"
+                     style="border-radius:18px; box-shadow:0 20px 40px rgba(26,35,126,0.08);">
 
-                            <!-- Zodiac Selector -->
-                            <div class="grid grid-cols-4 gap-3 mb-6">
-                                <button class="p-3 rounded-lg bg-primary text-white flex flex-col items-center gap-1 transition-all hover:scale-105">
-                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <!-- Decorative Corner -->
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-sacred opacity-10 rounded-bl-full"></div>
+
+                    <div class="relative z-10 p-8">
+
+                        <!-- Header -->
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-2xl font-headline text-primary"
+                                style="letter-spacing:-0.02em;">
+                                Today's Horoscope
+                            </h3>
+                            <span id="today-date"
+                                  class="text-sm text-text-secondary"
+                                  style="font-weight:500;"></span>
+                        </div>
+
+                        <!-- Zodiac Selector -->
+                        <div class="grid grid-cols-4 gap-3 mb-6" style="row-gap:10px;">
+<style>
+/* Smooth content swap */
+#zodiac-title,
+#zodiac-text,
+#love-rating,
+#career-rating,
+#health-rating {
+    animation: fadeSlide 0.45s ease both;
+}
+
+@keyframes fadeSlide {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.zodiac-btn {
+    position: relative;
+}
+
+/* Active glow */
+.zodiac-btn.bg-primary::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 12px;
+    background: linear-gradient(120deg, #1A237E, #FF8F00, #E91E63);
+    opacity: 0.35;
+    filter: blur(12px);
+    z-index: -1;
+}
+/* Mobile layout tuning */
+@media (max-width: 640px) {
+    .zodiac-btn {
+        padding: 14px 10px;
+        font-size: 13px;
+        min-height: 56px;
+    }
+
+    #zodiac-text {
+        font-size: 14px;
+    }
+
+    .card-elevated {
+        border-radius: 16px;
+    }
+}
+.zodiac-btn {
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+/* Hover */
+.zodiac-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(26,35,126,0.15);
+}
+
+/* Tap */
+.zodiac-btn:active {
+    transform: scale(0.96);
+}
+/* =====================================================
+   ADVANCED HOROSCOPE UI PACK — NO JS
+===================================================== */
+
+/* ---------- Smooth content animation ---------- */
+#zodiac-title,
+#zodiac-text,
+#love-rating,
+#career-rating,
+#health-rating {
+    animation: fadeSlide 0.45s ease both;
+}
+
+@keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Zodiac button micro-interactions ---------- */
+.zodiac-btn {
+    position: relative;
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        filter 0.25s ease;
+}
+
+.zodiac-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(26,35,126,0.15);
+}
+
+.zodiac-btn:active {
+    transform: scale(0.96);
+}
+
+/* ---------- Active zodiac glow ring ---------- */
+.zodiac-btn.bg-primary::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 12px;
+    background: linear-gradient(120deg, #1A237E, #FF8F00, #E91E63);
+    opacity: 0.35;
+    filter: blur(12px);
+    z-index: -1;
+}
+
+/* ---------- Zodiac icon animation ---------- */
+.zodiac-btn svg {
+    transition: transform 0.4s ease;
+}
+
+.zodiac-btn:hover svg {
+    transform: rotate(-8deg) scale(1.1);
+}
+
+.zodiac-btn.bg-primary svg {
+    animation: pulseIcon 2.5s infinite ease-in-out;
+}
+
+@keyframes pulseIcon {
+    0%,100% { transform: scale(1); }
+    50%     { transform: scale(1.12); }
+}
+
+/* ---------- Skeleton loading (CSS-only illusion) ---------- */
+.skeleton {
+    position: relative;
+    overflow: hidden;
+}
+
+.skeleton::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(0,0,0,0.04),
+        rgba(0,0,0,0.08),
+        rgba(0,0,0,0.04)
+    );
+    animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+    from { transform: translateX(-100%); }
+    to   { transform: translateX(100%); }
+}
+
+/* ---------- Card elevation ---------- */
+.card-elevated {
+    box-shadow: 0 20px 40px rgba(26,35,126,0.08);
+    border-radius: 18px;
+}
+
+/* ---------- Rating dots alignment ---------- */
+#love-rating,
+#career-rating,
+#health-rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ---------- Accessibility ---------- */
+.zodiac-btn:focus-visible {
+    outline: 3px solid rgba(26,35,126,0.6);
+    outline-offset: 3px;
+}
+
+/* ---------- Dark mode readiness ---------- */
+@media (prefers-color-scheme: dark) {
+    .card-elevated {
+        box-shadow: 0 20px 40px rgba(0,0,0,0.45);
+    }
+
+    .zodiac-btn:hover {
+        filter: brightness(1.05);
+    }
+}
+
+/* ---------- Mobile-first refinement ---------- */
+@media (max-width: 640px) {
+    .zodiac-btn {
+        min-height: 56px;
+        font-size: 13px;
+        padding: 14px 10px;
+    }
+
+    #zodiac-text {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+}
+
+/* ---------- Reduced motion support ---------- */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+</style>
+
+                            <!-- ACTIVE -->
+                              <button data-sign="aries"
+                                class="zodiac-btn p-3 rounded-lg bg-primary text-success-700 flex flex-col items-center gap-1 transition-all"
+                                style="box-shadow:0 6px 14px rgba(26,35,126,0.15); font-weight:500;">
+                                <span class="text-xs text-text-secondary">Aries</span>
+                            </button>
+
+                            <!-- INACTIVE -->
+                            <button data-sign="taurus"
+                                class="zodiac-btn p-3 rounded-lg bg-surface border border-border flex flex-col items-center gap-1 transition-all hover:border-primary"
+                                style="box-shadow:0 2px 6px rgba(0,0,0,0.04);">
+                                <span class="text-xs text-text-secondary">Taurus</span>
+                            </button>
+
+                            <button data-sign="gemini" class="zodiac-btn p-3 rounded-lg bg-surface border border-border flex flex-col items-center gap-1 transition-all hover:border-primary"
+                                style="box-shadow:0 2px 6px rgba(0,0,0,0.04);">
+                                <span class="text-xs text-text-secondary">Gemini</span>
+                            </button>
+
+                            <button data-sign="cancer" class="zodiac-btn p-3 rounded-lg bg-surface border border-border flex flex-col items-center gap-1 transition-all hover:border-primary"
+                                style="box-shadow:0 2px 6px rgba(0,0,0,0.04);">
+                                <span class="text-xs text-text-secondary">Cancer</span>
+                            </button>
+
+                            <button data-sign="leo" class="zodiac-btn p-3 rounded-lg bg-surface border border-border flex flex-col items-center gap-1 transition-all hover:border-primary"
+                                style="box-shadow:0 2px 6px rgba(0,0,0,0.04);">
+                                <span class="text-xs text-text-secondary">Leo</span>
+                            </button>
+
+                            <button data-sign="virgo" class="zodiac-btn p-3 rounded-lg bg-surface border border-border flex flex-col items-center gap-1 transition-all hover:border-primary"
+                                style="box-shadow:0 2px 6px rgba(0,0,0,0.04);">
+                                <span class="text-xs text-text-secondary">Virgo</span>
+                            </button>
+
+                            <button data-sign="libra" class="zodiac-btn p-3 rounded-lg bg-surface border border-border flex flex-col items-center gap-1 transition-all hover:border-primary"
+                                style="box-shadow:0 2px 6px rgba(0,0,0,0.04);">
+                                <span class="text-xs text-text-secondary">Libra</span>
+                            </button>
+
+                            <button data-sign="scorpio" class="zodiac-btn p-3 rounded-lg bg-surface border border-border flex flex-col items-center gap-1 transition-all hover:border-primary"
+                                style="box-shadow:0 2px 6px rgba(0,0,0,0.04);">
+                                <span class="text-xs text-text-secondary">Scorpio</span>
+                            </button>
+
+                            <button data-sign="sagittarius" class="zodiac-btn p-3 rounded-lg bg-surface border border-border flex flex-col items-center gap-1 transition-all hover:border-primary"
+                                style="box-shadow:0 2px 6px rgba(0,0,0,0.04);">
+                                <span class="text-xs text-text-secondary">Sagittarius</span>
+                            </button>
+
+                            <button data-sign="capricorn" class="zodiac-btn p-3 rounded-lg bg-surface border border-border flex flex-col items-center gap-1 transition-all hover:border-primary"
+                                style="box-shadow:0 2px 6px rgba(0,0,0,0.04);">
+                                <span class="text-xs text-text-secondary">Capricorn</span>
+                            </button>
+
+                            <button data-sign="aquarius" class="zodiac-btn p-3 rounded-lg bg-surface border border-border flex flex-col items-center gap-1 transition-all hover:border-primary"
+                                style="box-shadow:0 2px 6px rgba(0,0,0,0.04);">
+                                <span class="text-xs text-text-secondary">Aquarius</span>
+                            </button>
+
+                            <button data-sign="pisces" class="zodiac-btn p-3 rounded-lg bg-surface border border-border flex flex-col items-center gap-1 transition-all hover:border-primary"
+                                style="box-shadow:0 2px 6px rgba(0,0,0,0.04);">
+                                <span class="text-xs text-text-secondary">Pisces</span>
+                            </button>
+                        </div>
+
+                        <!-- Horoscope Content -->
+                        <div class="bg-primary-50 rounded-lg mb-6"
+                             style="padding:28px; border-radius:16px;">
+                            <div class="flex items-start gap-4 mb-4">
+                                <div class="w-16 h-16 bg-gradient-cosmic rounded-full flex items-center justify-center flex-shrink-0"
+                                     style="box-shadow:0 8px 20px rgba(26,35,126,0.25);">
+                                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
                                     </svg>
-                                    <span class="text-xs">Aries</span>
-                                </button>
-                                <button class="p-3 rounded-lg bg-surface border border-border flex flex-col items-center gap-1 hover:border-primary transition-colors">
-                                    <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
-                                    </svg>
-                                    <span class="text-xs text-text-secondary">Taurus</span>
-                                </button>
-                                <button class="p-3 rounded-lg bg-surface border border-border flex flex-col items-center gap-1 hover:border-primary transition-colors">
-                                    <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M12 2L9 9H2l6 5-2 8 6-5 6 5-2-8 6-5h-7z"/>
-                                    </svg>
-                                    <span class="text-xs text-text-secondary">Gemini</span>
-                                </button>
-                                <button class="p-3 rounded-lg bg-surface border border-border flex flex-col items-center gap-1 hover:border-primary transition-colors">
-                                    <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
-                                    </svg>
-                                    <span class="text-xs text-text-secondary">Cancer</span>
-                                </button>
-                            </div>
-
-                            <!-- Horoscope Content -->
-                            <div class="bg-primary-50 rounded-lg p-6 mb-6">
-                                <div class="flex items-start gap-4 mb-4">
-                                    <div class="w-16 h-16 bg-gradient-cosmic rounded-full flex items-center justify-center flex-shrink-0">
-                                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h4 class="text-lg font-headline text-primary mb-2">Aries (Mar 21 - Apr 19)</h4>
-                                        <p class="text-text-secondary leading-relaxed">
-                                            Today brings powerful cosmic energy for new beginnings. Mars aligns favorably, enhancing your confidence and leadership abilities. Focus on career opportunities that arise unexpectedly.
-                                        </p>
-                                    </div>
                                 </div>
-
-                                <!-- Rating Indicators -->
-                                <div class="grid grid-cols-3 gap-4 pt-4 border-t border-primary-100">
-                                    <div>
-                                        <div class="text-xs text-text-secondary mb-1">Love</div>
-                                        <div class="flex gap-1">
-                                            <span class="w-2 h-2 rounded-full bg-accent"></span>
-                                            <span class="w-2 h-2 rounded-full bg-accent"></span>
-                                            <span class="w-2 h-2 rounded-full bg-accent"></span>
-                                            <span class="w-2 h-2 rounded-full bg-accent"></span>
-                                            <span class="w-2 h-2 rounded-full bg-border"></span>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="text-xs text-text-secondary mb-1">Career</div>
-                                        <div class="flex gap-1">
-                                            <span class="w-2 h-2 rounded-full bg-secondary"></span>
-                                            <span class="w-2 h-2 rounded-full bg-secondary"></span>
-                                            <span class="w-2 h-2 rounded-full bg-secondary"></span>
-                                            <span class="w-2 h-2 rounded-full bg-secondary"></span>
-                                            <span class="w-2 h-2 rounded-full bg-secondary"></span>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="text-xs text-text-secondary mb-1">Health</div>
-                                        <div class="flex gap-1">
-                                            <span class="w-2 h-2 rounded-full bg-success"></span>
-                                            <span class="w-2 h-2 rounded-full bg-success"></span>
-                                            <span class="w-2 h-2 rounded-full bg-success"></span>
-                                            <span class="w-2 h-2 rounded-full bg-border"></span>
-                                            <span class="w-2 h-2 rounded-full bg-border"></span>
-                                        </div>
-                                    </div>
+                                <div>
+                                    <h4 id="zodiac-title"
+                                        class="text-lg font-headline text-primary mb-2"
+                                        style="letter-spacing:-0.01em;"></h4>
+                                    <p id="zodiac-text"
+                                       class="text-text-secondary"
+                                       style="font-size:15px; line-height:1.7;"></p>
                                 </div>
                             </div>
 
-                            <a href="/pages/personal_horoscope_center.html" class="btn-secondary w-full flex items-center justify-center gap-2">
-                                View Detailed Horoscope
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-                                </svg>
-                            </a>
+                            <!-- Ratings -->
+                            <div class="grid grid-cols-3 gap-4 border-t border-primary-100"
+                                 style="margin-top:16px; padding-top:16px;">
+                                <div id="love-rating" class="flex gap-1 justify-center items-center"></div>
+                                <div id="career-rating" class="flex gap-1 justify-center items-center"></div>
+                                <div id="health-rating" class="flex gap-1 justify-center items-center"></div>
+                            </div>
                         </div>
+
+                        <!-- CTA -->
+                        <a href="personal_horoscope_center.html"
+                           class="btn-secondary w-full flex items-center justify-center gap-2"
+                           style="font-size:16px; padding:14px 0; border-radius:14px;">
+                            View Detailed Horoscope
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                            </svg>
+                        </a>
+
                     </div>
                 </div>
             </div>
+
         </div>
-    </section>
+    </div>
+</section>
+
+<script>
+    function updateTodayDate() {
+        const options = { month: 'long', day: '2-digit', year: 'numeric' };
+        const today = new Date().toLocaleDateString('en-US', options);
+        document.getElementById('today-date').textContent = today;
+    }
+    updateTodayDate();
+    // Refresh date once every 24 hours
+    setInterval(updateTodayDate, 24 * 60 * 60 * 1000);
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* ================= DATE ================= */
+    const todayDateEl = document.getElementById("today-date");
+    if (todayDateEl) {
+        todayDateEl.textContent = new Date().toLocaleDateString("en-US", {
+            month: "long",
+            day: "2-digit",
+            year: "numeric"
+        });
+    }
+
+    /* ================= HOROSCOPE DATA ================= */
+    const horoscopes = {
+        aries: {
+            title: "Aries (Mar 21 - Apr 19)",
+            text: "Today brings powerful cosmic energy for new beginnings. Mars enhances confidence and leadership. Focus on unexpected career opportunities.",
+            love: 4,
+            career: 5,
+            health: 3
+        },
+        taurus: {
+            title: "Taurus (Apr 20 - May 20)",
+            text: "Stability and patience guide your day. Financial planning and emotional grounding bring positive results.",
+            love: 3,
+            career: 4,
+            health: 4
+        },
+        gemini: {
+            title: "Gemini (May 21 - Jun 20)",
+            text: "Communication opens new doors. Be clear in discussions and avoid overthinking.",
+            love: 4,
+            career: 3,
+            health: 4
+        },
+        cancer: {
+            title: "Cancer (Jun 21 - Jul 22)",
+            text: "Emotional clarity strengthens relationships. Trust your intuition today.",
+            love: 5,
+            career: 3,
+            health: 4
+        },
+        leo: {
+            title: "Leo (Jul 23 - Aug 22)",
+            text: "Creativity and confidence are amplified today. Lead boldly, but listen carefully.",
+            love: 4,
+            career: 5,
+            health: 4
+        },
+        virgo: {
+            title: "Virgo (Aug 23 - Sep 22)",
+            text: "Organization and attention to detail bring success. Avoid unnecessary stress.",
+            love: 3,
+            career: 4,
+            health: 4
+        },
+        libra: {
+            title: "Libra (Sep 23 - Oct 22)",
+            text: "Balance and diplomacy help resolve lingering matters. Relationships improve.",
+            love: 5,
+            career: 3,
+            health: 4
+        },
+        scorpio: {
+            title: "Scorpio (Oct 23 - Nov 21)",
+            text: "Transformation is favored today. Trust your instincts and stay composed.",
+            love: 4,
+            career: 4,
+            health: 3
+        },
+        sagittarius: {
+            title: "Sagittarius (Nov 22 - Dec 21)",
+            text: "Optimism opens new paths. Learning and travel-related matters are favored.",
+            love: 4,
+            career: 4,
+            health: 4
+        },
+        capricorn: {
+            title: "Capricorn (Dec 22 - Jan 19)",
+            text: "Discipline and patience bring tangible rewards. Stay focused on long-term goals.",
+            love: 3,
+            career: 5,
+            health: 4
+        },
+        aquarius: {
+            title: "Aquarius (Jan 20 - Feb 18)",
+            text: "Innovation and ideas flow easily. Collaborate with like-minded people.",
+            love: 4,
+            career: 4,
+            health: 3
+        },
+        pisces: {
+            title: "Pisces (Feb 19 - Mar 20)",
+            text: "Intuition guides your decisions today. Creative and spiritual pursuits thrive.",
+            love: 5,
+            career: 3,
+            health: 4
+        }
+    };
+
+    /* ================= RATING RENDER ================= */
+    function renderRating(containerId, value, colorClass) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+
+        container.innerHTML = "";
+        for (let i = 1; i <= 5; i++) {
+            const dot = document.createElement("span");
+            dot.className = `w-2 h-2 rounded-full ${i <= value ? colorClass : "bg-border"}`;
+            container.appendChild(dot);
+        }
+    }
+
+    /* ================= UPDATE CONTENT ================= */
+    function updateHoroscope(sign) {
+        const data = horoscopes[sign];
+        if (!data) return;
+
+        const titleEl = document.getElementById("zodiac-title");
+        const textEl = document.getElementById("zodiac-text");
+
+        if (titleEl) titleEl.textContent = data.title;
+        if (textEl) textEl.textContent = data.text;
+
+        renderRating("love-rating", data.love, "bg-accent");
+        renderRating("career-rating", data.career, "bg-secondary");
+        renderRating("health-rating", data.health, "bg-success");
+
+        document.querySelectorAll(".zodiac-btn").forEach(btn => {
+            btn.classList.remove("bg-primary", "text-white");
+            btn.classList.add("bg-surface");
+        });
+
+        const activeBtn = document.querySelector(`[data-sign="${sign}"]`);
+        if (activeBtn) {
+            activeBtn.classList.add("bg-primary", "text-white");
+        }
+    }
+
+    /* ================= EVENTS ================= */
+    document.querySelectorAll(".zodiac-btn").forEach(btn => {
+        btn.addEventListener("click", function () {
+            updateHoroscope(this.dataset.sign);
+        });
+    });
+
+    /* ================= DEFAULT LOAD ================= */
+    updateHoroscope("aries");
+
+});
+</script>
+
+
 
     <!-- Featured Astrologer of the Day -->
      <section class="section-cosmic bg-surface">
@@ -850,3 +1259,4 @@ document.addEventListener("DOMContentLoaded", function() {
 <script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
 </body>
 </html>
+
