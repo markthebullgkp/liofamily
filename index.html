@@ -121,18 +121,26 @@
             <div class="flex items-center justify-between py-4">
                 <!-- Logo -->
                 <a href="/" class="flex items-center gap-3 group">
-                    <svg class="w-12 h-12 transition-transform duration-300 group-hover:scale-110" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="24" cy="24" r="22" fill="url(#cosmic-gradient)" stroke="#FF8F00" stroke-width="2"/>
-                        <path d="M24 8L26.5 18.5L32 12L28 22H36L28 28L32 36L24 30L16 36L20 28L12 22H20L16 12L21.5 18.5L24 8Z" fill="#FFF8E1"/>
-                        <circle cx="24" cy="24" r="4" fill="#FF8F00"/>
-                        <defs>
-                            <linearGradient id="cosmic-gradient" x1="0" y1="0" x2="48" y2="48">
-                                <stop offset="0%" stop-color="#1A237E"/>
-                                <stop offset="50%" stop-color="#303F9F"/>
-                                <stop offset="100%" stop-color="#3F51B5"/>
-                            </linearGradient>
-                        </defs>
-                    </svg>
+                 <div style="
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#3F51B5,#1A237E);
+  border:2px solid #FF8F00;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+">
+  <img 
+    src="https://yt3.googleusercontent.com/lxKvjKXrQP19zhVfQwZQhMgZ0WwQ0IHR-GhwyKb9xqxsOQ2NMtgbE6faQzVnO3gmMl4YoJ-A=s160-c-k-c0x00ffffff-no-rj" 
+    alt="Logo"
+    style="
+      width:70%;
+      height:70%;
+      object-fit:contain;
+    "
+  />
+</div>
                     <div>
                         <h1 class="text-xl font-accent font-semibold text-primary">Leo Family</h1>
                         <p class="text-xs text-text-secondary">Ancient Wisdom, Modern Life</p>
@@ -1268,6 +1276,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
 </body>
 </html>
+
 
 
 
