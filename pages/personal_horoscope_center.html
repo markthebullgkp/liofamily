@@ -250,16 +250,12 @@ document.getElementById('astroForm').addEventListener('submit', async function(e
 </script>
 
 <!-- mark the Bull Section -->
-<div class="calculator-container" style="max-width: 400px; margin: 50px auto; font-family: sans-serif; text-align: center; border: 1px solid #ddd; padding: 20px; border-radius: 10px;">
-    <h2>Numerology Calculator</h2>
-    <p>Enter your mobile number to see its vibration.</p>
-    
-    <input type="text" id="mobileNumber" placeholder="Enter Mobile Number" style="width: 80%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;">
-    <br>
-    <button onclick="getNumerology()" id="calcBtn" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Calculate</button>
-
-    <div id="resultArea" style="margin-top: 20px; font-weight: bold; min-height: 50px;">
-        </div>
+<div style="width: 100%; text-align: center;">
+  <iframe 
+    src="https://numerology-mobile-number-calculator-749439135995.us-west1.run.app" 
+    style="width: 100%; max-width: 500px; height: 800px; border: 1px solid #ddd; border-radius: 10px;"
+    title="Numerology Calculator">
+  </iframe>
 </div>
     <script>
 async function getNumerology() {
@@ -1046,6 +1042,7 @@ async function getNumerology() {
 </body>
 
 </html>
+
 
 
 
